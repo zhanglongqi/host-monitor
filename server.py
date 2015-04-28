@@ -9,7 +9,7 @@ address = ('155.69.214.102', 31500)
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind(address)
 
-LQ_db.init_db()
+db_cassandra.init_db()
 
 
 def simplify_ip_info(source):
@@ -40,6 +40,6 @@ while True:
     ip = msg[2]
     ip = simplify_ip_info(ip)
     print(hostname, '-', time_rec, '-', ip)
-    LQ_db.update_host_info(hostname, time_rec, ip)
+    db_cassandra.update_host_info(hostname, time_rec, ip)
 
 s.close()
